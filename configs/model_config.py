@@ -1,38 +1,37 @@
 import os
 import logging
-from dotenv.main import load_dotenv
-
-load_dotenv()
-
 
 # 日志格式
 LOG_FORMAT = "%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s"
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 logging.basicConfig(format=LOG_FORMAT)
+# 是否显示详细日志
+log_verbose = True
 
 
 # 在以下字典中修改属性值，以指定本地embedding模型存储位置
+# 如将 "text2vec": "GanymedeNil/text2vec-large-chinese" 修改为 "text2vec": "User/Downloads/text2vec-large-chinese"
 # 此处请写绝对路径
 embedding_model_dict = {
-    "ernie-tiny": "nghuyong/ernie-3.0-nano-zh",
-    "ernie-base": "nghuyong/ernie-3.0-base-zh",
-    "text2vec-base": "shibing624/text2vec-base-chinese",
-    "text2vec": "GanymedeNil/text2vec-large-chinese",
-    "text2vec-paraphrase": "shibing624/text2vec-base-chinese-paraphrase",
-    "text2vec-sentence": "shibing624/text2vec-base-chinese-sentence",
-    "text2vec-multilingual": "shibing624/text2vec-base-multilingual",
-    "text2vec-bge-large-chinese": "shibing624/text2vec-bge-large-chinese",
-    "m3e-small": "moka-ai/m3e-small",
-    "m3e-base": "/Users/guoming/Codes/huggingface.co/m3e-base",
-    "m3e-large": "moka-ai/m3e-large",
-    "bge-small-zh": "BAAI/bge-small-zh",
-    "bge-base-zh": "BAAI/bge-base-zh",
-    "bge-large-zh": "BAAI/bge-large-zh",
-    "bge-large-zh-noinstruct": "BAAI/bge-large-zh-noinstruct",
-    "piccolo-base-zh": "sensenova/piccolo-base-zh",
-    "piccolo-large-zh": "sensenova/piccolo-large-zh",
-    "text-embedding-ada-002": os.environ.get("OPENAI_API_KEY")
+    # "ernie-tiny": "nghuyong/ernie-3.0-nano-zh",
+    # "ernie-base": "nghuyong/ernie-3.0-base-zh",
+    # "text2vec-base": "shibing624/text2vec-base-chinese",
+    # "text2vec": "GanymedeNil/text2vec-large-chinese",
+    # "text2vec-paraphrase": "shibing624/text2vec-base-chinese-paraphrase",
+    # "text2vec-sentence": "shibing624/text2vec-base-chinese-sentence",
+    # "text2vec-multilingual": "shibing624/text2vec-base-multilingual",
+    # "text2vec-bge-large-chinese": "shibing624/text2vec-bge-large-chinese",
+    # "m3e-small": "moka-ai/m3e-small",
+    "m3e-base": os.environ.get("EMBEDDING_MODEL_PATH")+"/m3e-base",
+    # "m3e-large": "moka-ai/m3e-large",
+    # "bge-small-zh": "BAAI/bge-small-zh",
+    # "bge-base-zh": "BAAI/bge-base-zh",
+    # "bge-large-zh": "BAAI/bge-large-zh",
+    # "bge-large-zh-noinstruct": "BAAI/bge-large-zh-noinstruct",
+    # "piccolo-base-zh": "sensenova/piccolo-base-zh",
+    # "piccolo-large-zh": "sensenova/piccolo-large-zh",
+    # "text-embedding-ada-002": os.environ.get("OPENAI_API_KEY")
 }
 
 # 选用的 Embedding 名称
@@ -42,31 +41,34 @@ EMBEDDING_MODEL = "m3e-base"
 EMBEDDING_DEVICE = "auto"
 
 llm_model_dict = {
-    "llama2-7b": {
-        "local_model_path": "/Users/guoming/Codes/huggingface.co/Llama2-Chinese-7b-Chat",
+
+ "llama2-7b": {
+        "local_model_path": os.environ.get("LLM_MODEL_PATH")+"/llama2-chinese-7b-chat",
         "api_base_url": "http://localhost:8888/v1",  # "name"修改为fastchat服务中的"api_base_url"
         "api_key": "EMPTY"
     },
-    "llama2-13b": {
-        "local_model_path": "/Users/guoming/Codes/huggingface.co/Llama2-Chinese-13b-Chat",
-        "api_base_url": "http://localhost:8888/v1",  # "name"修改为fastchat服务中的"api_base_url"
-        "api_key": "EMPTY"
-    },
-    "chatglm-6b": {
-        "local_model_path": "THUDM/chatglm-6b",
-        "api_base_url": "http://localhost:8888/v1",  # "name"修改为fastchat服务中的"api_base_url"
-        "api_key": "EMPTY"
-    },
-    "chatglm2-6b": {
-        "local_model_path": "THUDM/chatglm2-6b",
-        "api_base_url": "http://localhost:8888/v1",  # URL需要与运行fastchat服务端的server_config.FSCHAT_OPENAI_API一致
-        "api_key": "EMPTY"
-    },
-    "chatglm2-6b-32k": {
-        "local_model_path": "THUDM/chatglm2-6b-32k",  # "THUDM/chatglm2-6b-32k",
-        "api_base_url": "http://localhost:8888/v1",  # "URL需要与运行fastchat服务端的server_config.FSCHAT_OPENAI_API一致
-        "api_key": "EMPTY"
-    },
+    # "llama2-13b": {
+    #     "local_model_path": os.environ.get("LLM_MODEL_PATH")+"/llama2-chinese-13b-chat",
+    #     "api_base_url": "http://localhost:8888/v1",  # "name"修改为fastchat服务中的"api_base_url"
+    #     "api_key": "EMPTY"
+    # },
+    # "chatglm-6b": {
+    #     "local_model_path": "THUDM/chatglm-6b",
+    #     "api_base_url": "http://localhost:8888/v1",  # "name"修改为fastchat服务中的"api_base_url"
+    #     "api_key": "EMPTY"
+    # },
+    #
+    # "chatglm2-6b": {
+    #     "local_model_path": "THUDM/chatglm2-6b",
+    #     "api_base_url": "http://localhost:8888/v1",  # URL需要与运行fastchat服务端的server_config.FSCHAT_OPENAI_API一致
+    #     "api_key": "EMPTY"
+    # },
+    #
+    # "chatglm2-6b-32k": {
+    #     "local_model_path": "THUDM/chatglm2-6b-32k",  # "THUDM/chatglm2-6b-32k",
+    #     "api_base_url": "http://localhost:8888/v1",  # "URL需要与运行fastchat服务端的server_config.FSCHAT_OPENAI_API一致
+    #     "api_key": "EMPTY"
+    # },
 
     # 调用chatgpt时如果报出： urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.openai.com', port=443):
     #  Max retries exceeded with url: /v1/chat/completions
@@ -83,21 +85,45 @@ llm_model_dict = {
     # 4.0 seconds as it raised APIConnectionError: Error communicating with OpenAI.
     # 需要添加代理访问(正常开的代理软件可能会拦截不上)需要设置配置openai_proxy 或者 使用环境遍历OPENAI_PROXY 进行设置
     # 比如: "openai_proxy": 'http://127.0.0.1:4780'
-    "gpt-3.5-turbo": {
-        "api_base_url": "https://api.openai.com/v1",
-        "api_key": os.environ.get("OPENAI_API_KEY"),
-        "openai_proxy": os.environ.get("OPENAI_PROXY")
-    },
+    # "gpt-3.5-turbo": {
+    #     "api_base_url": "https://api.openai.com/v1",
+    #     "api_key": "",
+    #     "openai_proxy": ""
+    # },
     # 线上模型。当前支持智谱AI。
     # 如果没有设置有效的local_model_path，则认为是在线模型API。
     # 请在server_config中为每个在线API设置不同的端口
     # 具体注册及api key获取请前往 http://open.bigmodel.cn
-    "chatglm-api": {
-        "api_base_url": "http://127.0.0.1:8888/v1",
-        "api_key": os.environ.get("ZHIPUAI_API_KEY"),
-        "provider": "ChatGLMWorker",
-        "version": "chatglm_pro",  # 可选包括 "chatglm_lite", "chatglm_std", "chatglm_pro"
-    }
+    # "zhipu-api": {
+    #     "api_base_url": "http://127.0.0.1:8888/v1",
+    #     "api_key": "",
+    #     "provider": "ChatGLMWorker",
+    #     "version": "chatglm_pro",  # 可选包括 "chatglm_lite", "chatglm_std", "chatglm_pro"
+    # },
+    # "minimax-api": {
+    #     "api_base_url": "http://127.0.0.1:8888/v1",
+    #     "group_id": "",
+    #     "api_key": "",
+    #     "is_pro": False,
+    #     "provider": "MiniMaxWorker",
+    # },
+    # "xinghuo-api": {
+    #     "api_base_url": "http://127.0.0.1:8888/v1",
+    #     "APPID": "",
+    #     "APISecret": "",
+    #     "api_key": "",
+    #     "is_v2": False,
+    #     "provider": "XingHuoWorker",
+    # },
+    # 百度千帆 API，申请方式请参考 https://cloud.baidu.com/doc/WENXINWORKSHOP/s/4lilb2lpf
+    # "qianfan-api": {
+    #     "version": "ernie-bot",  # 当前支持 "ernie-bot" 或 "ernie-bot-turbo"， 更多的见文档模型支持列表中千帆部分。
+    #     "version_url": "", # 可以不填写version，直接填写在千帆申请模型发布的API地址
+    #     "api_base_url": "http://127.0.0.1:8888/v1",
+    #     "api_key": "",
+    #     "secret_key": "",
+    #     "provider": "QianFanWorker",
+    # }
 }
 
 # LLM 名称
@@ -106,8 +132,50 @@ LLM_MODEL = "llama2-7b"
 # 历史对话轮数
 HISTORY_LEN = 3
 
+# LLM通用对话参数
+TEMPERATURE = 0.7
+# TOP_P = 0.95 # ChatOpenAI暂不支持该参数
+
+
 # LLM 运行设备。设为"auto"会自动检测，也可手动设定为"cuda","mps","cpu"其中之一。
 LLM_DEVICE = "auto"
+
+# TextSplitter
+
+text_splitter_dict = {
+    "ChineseRecursiveTextSplitter": {
+        "source": "",
+        "tokenizer_name_or_path": "",
+    },
+    "SpacyTextSplitter": {
+        "source": "huggingface",
+        "tokenizer_name_or_path": "gpt2",
+    },
+    "RecursiveCharacterTextSplitter": {
+        "source": "tiktoken",
+        "tokenizer_name_or_path": "cl100k_base",
+    },
+
+    "MarkdownHeaderTextSplitter": {
+        "headers_to_split_on":
+            [
+                ("#", "head1"),
+                ("##", "head2"),
+                ("###", "head3"),
+                ("####", "head4"),
+            ]
+    },
+}
+
+# TEXT_SPLITTER 名称
+TEXT_SPLITTER = "ChineseRecursiveTextSplitter"
+
+# 知识库中单段文本长度(不适用MarkdownHeaderTextSplitter)
+CHUNK_SIZE = 250
+
+# 知识库中相邻文本重合长度(不适用MarkdownHeaderTextSplitter)
+OVERLAP_SIZE = 0
+
 
 # 日志存储路径
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs")
@@ -116,11 +184,13 @@ if not os.path.exists(LOG_PATH):
 
 # 知识库默认存储路径
 KB_ROOT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "knowledge_base")
-
+if not os.path.exists(KB_ROOT_PATH):
+    os.mkdir(KB_ROOT_PATH)
 # 数据库默认存储路径。
 # 如果使用sqlite，可以直接修改DB_ROOT_PATH；如果使用其它数据库，请直接修改SQLALCHEMY_DATABASE_URI。
 DB_ROOT_PATH = os.path.join(KB_ROOT_PATH, "info.db")
 SQLALCHEMY_DATABASE_URI = f"sqlite:///{DB_ROOT_PATH}"
+
 
 # 可选向量库类型及对应配置
 kbs_config = {
@@ -144,20 +214,14 @@ DEFAULT_VS_TYPE = "faiss"
 # 缓存向量库数量
 CACHED_VS_NUM = 1
 
-# 知识库中单段文本长度
-CHUNK_SIZE = 250
-
-# 知识库中相邻文本重合长度
-OVERLAP_SIZE = 50
-
 # 知识库匹配向量数量
-VECTOR_SEARCH_TOP_K = 5
+VECTOR_SEARCH_TOP_K = 3
 
 # 知识库匹配相关度阈值，取值范围在0-1之间，SCORE越小，相关度越高，取到1相当于不筛选，建议设置在0.5左右
 SCORE_THRESHOLD = 1
 
 # 搜索引擎匹配结题数量
-SEARCH_ENGINE_TOP_K = 5
+SEARCH_ENGINE_TOP_K = 3
 
 # nltk 模型存储路径
 NLTK_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "nltk_data")
