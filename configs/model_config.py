@@ -1,5 +1,7 @@
 import os
 import logging
+from dotenv import load_dotenv
+load_dotenv()
 
 # 日志格式
 LOG_FORMAT = "%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s"
