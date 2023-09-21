@@ -170,7 +170,7 @@ text_splitter_dict = {
 }
 
 # TEXT_SPLITTER 名称
-TEXT_SPLITTER = "ChineseRecursiveTextSplitter"
+TEXT_SPLITTER = "MarkdownHeaderTextSplitter"
 
 # 知识库中单段文本长度(不适用MarkdownHeaderTextSplitter)
 CHUNK_SIZE = 250
