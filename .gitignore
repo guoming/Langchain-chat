@@ -3,7 +3,6 @@
 *.bak
 logs
 /knowledge_base/
-/configs/*.py
 .vscode/
 
 # below are standard python ignore files
