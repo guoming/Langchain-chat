@@ -4,6 +4,8 @@
 logs
 /knowledge_base/
 .vscode/
+.env
+.venv
 
 # below are standard python ignore files
 # Byte-compiled / optimized / DLL files
