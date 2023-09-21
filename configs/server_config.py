@@ -1,3 +1,5 @@
+import os
+
 from .model_config import LLM_MODEL, llm_model_dict, LLM_DEVICE
 import httpx
 
@@ -9,7 +11,7 @@ HTTPX_DEFAULT_TIMEOUT = 300.0
 OPEN_CROSS_DOMAIN = False
 
 # 各服务器默认绑定host
-DEFAULT_BIND_HOST = "127.0.0.1"
+DEFAULT_BIND_HOST = "0.0.0.0"
 
 # webui.py server
 WEBUI_SERVER = {
@@ -19,7 +21,7 @@ WEBUI_SERVER = {
 
 # api.py server
 API_SERVER = {
-    "host": DEFAULT_BIND_HOST,
+    "host": os.environ.get("API_SERVER_HOST", DEFAULT_BIND_HOST),
     "port": 7861,
 }
 

@@ -11,19 +11,19 @@ api = ApiRequest(base_url=api_address())
 
 if __name__ == "__main__":
     st.set_page_config(
-        "Langchain-Chatchat WebUI",
-        os.path.join("img", "chatchat_icon_blue_square_v2.png"),
+        "GC智能客服（测试） ",
+        "",
         initial_sidebar_state="expanded",
         menu_items={
-            'Get Help': 'https://github.com/chatchat-space/Langchain-Chatchat',
-            'Report a bug': "https://github.com/chatchat-space/Langchain-Chatchat/issues",
-            'About': f"""欢迎使用 Langchain-Chatchat WebUI {VERSION}！"""
+            # 'Get Help': 'https://github.com/chatchat-space/Langchain-Chatchat',
+            # 'Report a bug': "https://github.com/chatchat-space/Langchain-Chatchat/issues",
+            # 'About': f"""欢迎使用 Langchain-Chatchat WebUI {VERSION}！"""
         }
     )
 
     if not chat_box.chat_inited:
         st.toast(
-            f"欢迎使用 [`Langchain-Chatchat`](https://github.com/chatchat-space/Langchain-Chatchat) ! \n\n"
+            f"欢迎使用  \n\n"
             f"当前使用模型`{LLM_MODEL}`, 您可以开始提问了."
         )
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         st.image(
             os.path.join(
                 "img",
-                "logo-long-chatchat-trans-v2.png"
+                "logo.png"
             ),
             use_column_width=True
         )
