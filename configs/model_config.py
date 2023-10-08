@@ -43,8 +43,12 @@ EMBEDDING_MODEL = "m3e-base"
 EMBEDDING_DEVICE = "auto"
 
 llm_model_dict = {
-
- "llama2-7b": {
+    "atom-7b-chat": {
+        "local_model_path": os.environ.get("LLM_MODEL_PATH") + "/atom-7b-chat",
+        "api_base_url": "http://localhost:8888/v1",  # "name"修改为fastchat服务中的"api_base_url"
+        "api_key": "EMPTY"
+    },
+    "llama2-7b": {
         "local_model_path": os.environ.get("LLM_MODEL_PATH")+"/llama2-chinese-7b-chat",
         "api_base_url": "http://localhost:8888/v1",  # "name"修改为fastchat服务中的"api_base_url"
         "api_key": "EMPTY"
