@@ -129,7 +129,7 @@ llm_model_dict = {
 }
 
 # LLM 名称
-LLM_MODEL = "llama2-7b"
+LLM_MODEL = "atom-7b-chat"
 
 # 历史对话轮数
 HISTORY_LEN = 3
@@ -170,7 +170,7 @@ text_splitter_dict = {
 }
 
 # TEXT_SPLITTER 名称
-TEXT_SPLITTER = "MarkdownHeaderTextSplitter"
+TEXT_SPLITTER = "ChineseRecursiveTextSplitter"
 
 # 知识库中单段文本长度(不适用MarkdownHeaderTextSplitter)
 CHUNK_SIZE = 250

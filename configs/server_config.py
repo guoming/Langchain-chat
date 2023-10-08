@@ -15,7 +15,7 @@ DEFAULT_BIND_HOST = os.environ.get("DEFAULT_BIND_HOST")
 
 # webui.py server
 WEBUI_SERVER = {
-    "host": DEFAULT_BIND_HOST,
+    "host": "0.0.0.0",
     "port": 8501,
 }
 
