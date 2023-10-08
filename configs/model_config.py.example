@@ -1,5 +1,6 @@
 import os
-
+from dotenv import load_dotenv
+load_dotenv()
 
 # 可以指定一个绝对路径，统一存放所有的Embedding和LLM模型。
 # 每个模型可以是一个单独的目录，也可以是某个目录下的二级子目录
@@ -24,7 +25,7 @@ MODEL_PATH = {
         "text2vec-multilingual": "shibing624/text2vec-base-multilingual",
         "text2vec-bge-large-chinese": "shibing624/text2vec-bge-large-chinese",
         "m3e-small": "moka-ai/m3e-small",
-        "m3e-base": "moka-ai/m3e-base",
+        "m3e-base": os.environ.get("EMBEDDING_MODEL_PATH")+"/m3e-base",
         "m3e-large": "moka-ai/m3e-large",
         "bge-small-zh": "BAAI/bge-small-zh",
         "bge-base-zh": "BAAI/bge-base-zh",
@@ -39,6 +40,8 @@ MODEL_PATH = {
     # TODO: add all supported llm models
     "llm_model": {
         # 以下部分模型并未完全测试，仅根据fastchat和vllm模型的模型列表推定支持
+        "atom-7b-chat":  os.environ.get("LLM_MODEL_PATH") + "/atom-7b-chat",
+
         "chatglm-6b": "THUDM/chatglm-6b",
         "chatglm2-6b": "THUDM/chatglm2-6b",
         "chatglm2-6b-int4": "THUDM/chatglm2-6b-int4",
@@ -99,7 +102,7 @@ EMBEDDING_MODEL = "m3e-base" # 可以尝试最新的嵌入式sota模型：piccol
 EMBEDDING_DEVICE = "auto"
 
 # LLM 名称
-LLM_MODEL = "chatglm2-6b"
+LLM_MODEL = "atom-7b-chat"
 
 # LLM 运行设备。设为"auto"会自动检测，也可手动设定为"cuda","mps","cpu"其中之一。
 LLM_DEVICE = "auto"
