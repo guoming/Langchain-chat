@@ -8,16 +8,16 @@ DEFAULT_VS_TYPE = "faiss"
 CACHED_VS_NUM = 1
 
 # 知识库中单段文本长度(不适用MarkdownHeaderTextSplitter)
-CHUNK_SIZE = 250
+CHUNK_SIZE = 1000
 
 # 知识库中相邻文本重合长度(不适用MarkdownHeaderTextSplitter)
-OVERLAP_SIZE = 50
+OVERLAP_SIZE = 200
 
 # 知识库匹配向量数量
 VECTOR_SEARCH_TOP_K = 3
 
 # 知识库匹配相关度阈值，取值范围在0-1之间，SCORE越小，相关度越高，取到1相当于不筛选，建议设置在0.5左右
-SCORE_THRESHOLD = 1
+SCORE_THRESHOLD = 0.5
 
 # 搜索引擎匹配结题数量
 SEARCH_ENGINE_TOP_K = 3

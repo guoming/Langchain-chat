@@ -111,7 +111,7 @@ LLM_DEVICE = "auto"
 HISTORY_LEN = 3
 
 # LLM通用对话参数
-TEMPERATURE = 0.7
+TEMPERATURE = 0.01
 # TOP_P = 0.95 # ChatOpenAI暂不支持该参数
 
 
